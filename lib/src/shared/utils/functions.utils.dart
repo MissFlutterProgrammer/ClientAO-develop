@@ -99,7 +99,8 @@ String? formatBody(String? body, MediaType? mediaType) {
   return null;
 }
 
-Map<String, String>? listToMap(List<KeyValueRow>? rows, {bool isHeader = false}) {
+Map<String, String>? listToMap(List<KeyValueRow>? rows,
+    {bool isHeader = false}) {
   if (rows == null) return null;
 
   if (rows.isNotEmpty && rows.first.key == null) return null;
@@ -138,7 +139,11 @@ void copyToClipboard({
   Clipboard.setData(ClipboardData(text: text ?? '')).then(
     (value) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(successMessage ?? 'URL Copied to clipboard')),
+        SnackBar(
+          content: Text(
+            successMessage ?? 'URL Copied to clipboard',
+          ),
+        ),
       );
     },
   );

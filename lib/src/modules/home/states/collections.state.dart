@@ -24,14 +24,21 @@ final cancelRepeatRequestProvider = StateProvider<bool>((ref) {
 final activeIdProvider = StateProvider<ActiveId?>((ref) => ActiveId());
 
 /// A provider to update response state based on [ActiveId]
-final responseStateProvider = StateProvider.family<AsyncValue<List<BaseResponseModel>?>?, ActiveId?>((ref, activeId) {
-  final collectionIndex = ref.watch(collectionsNotifierProvider.notifier).indexOfId();
+final responseStateProvider =
+    StateProvider.family<AsyncValue<List<BaseResponseModel>?>?, ActiveId?>(
+        (ref, activeId) {
+  final collectionIndex =
+      ref.watch(collectionsNotifierProvider.notifier).indexOfId();
   final collections = ref.watch(collectionsNotifierProvider);
 
-  return AsyncData(collections.get(collectionIndex)?.responses?.get(activeId?.requestId ?? 0));
+  return AsyncData(collections
+      .get(collectionIndex)
+      ?.responses
+      ?.get(activeId?.requestId ?? 0));
 });
 
-final collectionsNotifierProvider = StateNotifierProvider<CollectionsNotifier, List<CollectionModel>>((ref) {
+final collectionsNotifierProvider =
+    StateNotifierProvider<CollectionsNotifier, List<CollectionModel>>((ref) {
   return CollectionsNotifier(ref);
 });
 
@@ -53,7 +60,8 @@ class CollectionsNotifier extends StateNotifier<List<CollectionModel>> {
   final Ref _ref;
 
   bool loadFromCache() {
-    final collections = _ref.read(collectionHiveServiceProvider).getCollections();
+    final collections =
+        _ref.read(collectionHiveServiceProvider).getCollections();
 
     state = collections ?? [];
 
@@ -134,14 +142,18 @@ class CollectionsNotifier extends StateNotifier<List<CollectionModel>> {
     final request = collection?.requests?[requestId];
 
     if (request is RequestModel) {
-      _ref.read(httpRequestServiceProvider).send(RequestParams(
-            request: request,
-            repeatRequest: repeatRequest,
-            sendAfterDelay: sendAfterDelay,
-            requestInterval: requestInterval,
-          ));
+      _ref.read(httpRequestServiceProvider).send(
+            RequestParams(
+              request: request,
+              repeatRequest: repeatRequest,
+              sendAfterDelay: sendAfterDelay,
+              requestInterval: requestInterval,
+            ),
+          );
     } else if (request is WebSocketRequest) {
-      _ref.read(webSocketProvider.notifier).connect(Uri.tryParse(request.url ?? ''));
+      _ref
+          .read(webSocketProvider.notifier)
+          .connect(Uri.tryParse(request.url ?? ''));
     }
     return;
   }

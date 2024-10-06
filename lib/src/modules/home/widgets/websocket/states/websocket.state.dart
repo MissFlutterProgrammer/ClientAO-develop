@@ -6,21 +6,25 @@ import 'package:client_ao/src/shared/utils/functions.utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-final allWebSocketMessagesProvider = StateProvider<List<WebSocketMessage>?>((ref) {
+final allWebSocketMessagesProvider =
+    StateProvider<List<WebSocketMessage>?>((ref) {
   return [];
 });
 
-final webSocketProvider = StateNotifierProvider<WebSocketNotifier, WebSocketChannel?>((ref) {
+final webSocketProvider =
+    StateNotifierProvider<WebSocketNotifier, WebSocketChannel?>((ref) {
   return WebSocketNotifier(ref);
 });
 
 // A streamNotifier to listen for incoming messages from WebSocket channel
-final webSocketStreamProvider = StreamProvider<List<WebSocketMessage>?>((ref) async* {
+final webSocketStreamProvider =
+    StreamProvider<List<WebSocketMessage>?>((ref) async* {
   final channel = ref.watch(webSocketProvider);
 
   if (channel != null) {
     await for (final data in channel.stream.map((e) => e)) {
-      var allMessages = ref.read(allWebSocketMessagesProvider) ?? <WebSocketMessage>[];
+      var allMessages =
+          ref.read(allWebSocketMessagesProvider) ?? <WebSocketMessage>[];
       final message = WebSocketMessage(
         message: data,
         from: SentFrom.remote,
@@ -64,15 +68,20 @@ class WebSocketNotifier extends StateNotifier<WebSocketChannel?> {
     final activeId = _ref.watch(activeIdProvider);
     final index = _ref.read(collectionsNotifierProvider.notifier).indexOfId();
     var collections = _ref.read(collectionsNotifierProvider);
-    final requestResponse = _ref.read(collectionsNotifierProvider.notifier).getCollection()?.responses;
+    final requestResponse = _ref
+        .read(collectionsNotifierProvider.notifier)
+        .getCollection()
+        ?.responses;
     var allMessages = _ref.read(responseStateProvider(activeId))?.value;
 
     allMessages = [message, ...allMessages ?? []];
 
     requestResponse?[activeId?.requestId ?? 0] = allMessages;
-    collections[index] = collections[index].copyWith(responses: requestResponse);
+    collections[index] =
+        collections[index].copyWith(responses: requestResponse);
 
-    updateRequestResponseState(_ref, AsyncValue.data(allMessages), activeId?.requestId);
+    updateRequestResponseState(
+        _ref, AsyncValue.data(allMessages), activeId?.requestId);
   }
 
   void disconnect() async {

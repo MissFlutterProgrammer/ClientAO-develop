@@ -39,7 +39,9 @@ class WebSocketResponseSection extends HookConsumerWidget {
                     );
 
                     return Davi<WebSocketMessage>(
-                      key: Key('${activeId?.requestId}-${allMessages?.length}'),
+                      key: Key(
+                        '${activeId?.requestId}-${allMessages?.length}',
+                      ),
                       daviModel,
                     );
                   },
@@ -71,7 +73,7 @@ class ResponseSearch extends ConsumerWidget {
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 ),
               ),
             ),

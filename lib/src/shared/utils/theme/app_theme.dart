@@ -28,7 +28,7 @@ class Themes {
     ),
     filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
@@ -51,6 +51,8 @@ class AppColors extends StateNotifier<Color?> {
   final ThemeMode? _themeMode;
 
   Color? selectedColor() {
-    return _themeMode == ThemeMode.dark ? Colors.grey.shade800 : Colors.grey[350];
+    return _themeMode == ThemeMode.dark
+        ? Colors.grey.shade800
+        : Colors.grey[350];
   }
 }

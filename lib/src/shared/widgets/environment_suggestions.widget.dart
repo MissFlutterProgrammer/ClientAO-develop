@@ -9,7 +9,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// provider responsible to check what environments should be suggested to user
 /// based on inserted text
-final environmentByInsertedTextProvider = StateProvider.family<List<MapEntry>?, String?>((ref, search) {
+final environmentByInsertedTextProvider =
+    StateProvider.family<List<MapEntry>?, String?>((ref, search) {
   if (search == null || search.isEmpty) return [];
   final isTyping = ref.watch(isTypingProvider);
 
@@ -17,9 +18,11 @@ final environmentByInsertedTextProvider = StateProvider.family<List<MapEntry>?, 
 
   final key = ref.watch(selectedEnvironmentProvider) ?? '';
 
-  final envKeys = ref.read(environmentHiveServiceProvider).getEnvironmentValuesByKey(key);
+  final envKeys =
+      ref.read(environmentHiveServiceProvider).getEnvironmentValuesByKey(key);
 
-  final result = envKeys?.entries.where((e) => e.key.toString().contains(search)).toList();
+  final result =
+      envKeys?.entries.where((e) => e.key.toString().contains(search)).toList();
 
   return result;
 });
@@ -42,7 +45,8 @@ class ListViewWithSuggestions extends HookConsumerWidget {
     final textFieldValue = ref.watch(textFieldValueProvider);
     final end = controller.selection.end;
     final currentText = textFieldValue?.getStringFromEnd(end);
-    final envKeys = ref.watch(environmentByInsertedTextProvider(currentText?.$1.trim()));
+    final envKeys =
+        ref.watch(environmentByInsertedTextProvider(currentText?.$1.trim()));
 
     return Material(
       color: Colors.transparent,
@@ -56,7 +60,9 @@ class ListViewWithSuggestions extends HookConsumerWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               child: Container(
-                color: theme == ThemeMode.dark ? Colors.grey.shade800 : Colors.white,
+                color: theme == ThemeMode.dark
+                    ? Colors.grey.shade800
+                    : Colors.white,
                 height: 30,
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Row(
@@ -66,21 +72,26 @@ class ListViewWithSuggestions extends HookConsumerWidget {
                     Container(
                       width: 30,
                       alignment: Alignment.center,
-                      color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.8),
                       child: Text(
                         'x',
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                              fontStyle: FontStyle.italic,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  fontStyle: FontStyle.italic,
+                                ),
                       ),
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         '_.${envKeys?.get(index)?.key}',
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                              fontStyle: FontStyle.italic,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  fontStyle: FontStyle.italic,
+                                ),
                       ),
                     ),
                   ],
@@ -98,7 +109,10 @@ class ListViewWithSuggestions extends HookConsumerWidget {
                   controller.text = newString;
                   focusNode.requestFocus();
 
-                  ref.read(selectedSuggestionTextProvider(controller.hashCode).notifier).state = envKeys?.get(index)?.value.toString();
+                  ref
+                      .read(selectedSuggestionTextProvider(controller.hashCode)
+                          .notifier)
+                      .state = envKeys?.get(index)?.value.toString();
                 }
 
                 removeOverlayIfExist(ref);

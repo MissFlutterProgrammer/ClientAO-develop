@@ -27,12 +27,16 @@ class SendRequestButton extends ConsumerWidget {
           FilledButton(
             onPressed: onPressed,
             style: ButtonStyle(
-              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 24,
-              )),
+              padding: WidgetStateProperty.all(
+                const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 24,
+                ),
+              ),
             ),
-            child: Text(label ?? (cancelRequest ? 'Send' : 'Cancel')),
+            child: Text(
+              label ?? (cancelRequest ? 'Send' : 'Cancel'),
+            ),
           ),
           if (cancelRequest)
             PopUpSendMenu(

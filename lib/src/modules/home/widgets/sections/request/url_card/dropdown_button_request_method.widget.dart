@@ -11,8 +11,10 @@ class DropdownButtonRequestMethod extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final collectionIndex = ref.watch(collectionsNotifierProvider.notifier).indexOfId();
-    final collection = ref.watch(collectionsNotifierProvider).get(collectionIndex);
+    final collectionIndex =
+        ref.watch(collectionsNotifierProvider.notifier).indexOfId();
+    final collection =
+        ref.watch(collectionsNotifierProvider).get(collectionIndex);
 
     return DropdownButton<HttpVerb>(
       focusColor: Theme.of(context).colorScheme.surface,
@@ -23,7 +25,9 @@ class DropdownButtonRequestMethod extends HookConsumerWidget {
         height: 0,
       ),
       onChanged: (HttpVerb? value) {
-        ref.read(collectionsNotifierProvider.notifier).updateRequest(method: value);
+        ref
+            .read(collectionsNotifierProvider.notifier)
+            .updateRequest(method: value);
       },
       items: HttpVerb.values.map<DropdownMenuItem<HttpVerb>>((HttpVerb value) {
         return DropdownMenuItem<HttpVerb>(

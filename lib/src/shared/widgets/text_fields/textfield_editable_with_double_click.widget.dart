@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -51,7 +50,8 @@ class TextFieldEditableWithDoubleClick extends HookConsumerWidget {
         decoration: InputDecoration(
           disabledBorder: disabledBorder ?? InputBorder.none,
           focusedBorder: focusedBorder ?? InputBorder.none,
-          contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(0, 8, 0, 8),
+          contentPadding:
+              contentPadding ?? const EdgeInsets.fromLTRB(0, 8, 0, 8),
         ),
         style: style ?? Theme.of(context).textTheme.bodyMedium,
         maxLines: maxLines,

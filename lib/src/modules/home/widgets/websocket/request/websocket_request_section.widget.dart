@@ -18,7 +18,8 @@ class WebsocketRequestSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final collectionsLength = ref.watch(collectionsNotifierProvider.select((value) => value.length));
+    final collectionsLength =
+        ref.watch(collectionsNotifierProvider.select((value) => value.length));
 
     if (collectionsLength == 0) {
       return const EmptyCollectionsPage();
@@ -36,9 +37,11 @@ class WebsocketRequestSection extends HookConsumerWidget {
               children: [
                 const Expanded(child: RequestEditor()),
                 VerticalDivider(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 ),
-                const Expanded(child: WebSocketResponseSection()),
+                const Expanded(
+                  child: WebSocketResponseSection(),
+                ),
               ],
             ),
           ),
@@ -71,7 +74,11 @@ class RequestEditor extends HookConsumerWidget {
           child: TabBarView(
             controller: tabController,
             children: [
-              WebSocketRequestBody(key: Key('value-${activeId?.requestId}')),
+              WebSocketRequestBody(
+                key: Key(
+                  'value-${activeId?.requestId}',
+                ),
+              ),
               const AuthLayoutBasedOnMethod(),
               const RequestUrlParams(),
               const RequestHeaders(),
@@ -104,10 +111,13 @@ class EmptyCollectionsPage extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           FilledButton(
-              onPressed: () {
-                ref.read(collectionsNotifierProvider.notifier).newCollection();
-              },
-              child: const Text(emptyCollectionsButtonText)),
+            onPressed: () {
+              ref.read(collectionsNotifierProvider.notifier).newCollection();
+            },
+            child: const Text(
+              emptyCollectionsButtonText,
+            ),
+          ),
         ],
       ),
     );

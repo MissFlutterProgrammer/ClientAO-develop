@@ -36,7 +36,8 @@ class CollectionHiveService implements ILocalDataStorage {
   Future<void> saveCollection(CollectionModel? collection) async {
     if (collection == null) return;
 
-    if (collectionsBox.isNotEmpty && collectionsBox.containsKey(collection.id)) {
+    if (collectionsBox.isNotEmpty &&
+        collectionsBox.containsKey(collection.id)) {
       await collectionsBox.putAtKey(collection.id, collection);
       return;
     }

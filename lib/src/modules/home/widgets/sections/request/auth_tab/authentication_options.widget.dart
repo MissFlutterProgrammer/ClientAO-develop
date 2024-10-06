@@ -26,7 +26,9 @@ class AuthenticationOptions extends ConsumerWidget {
           },
           child: Container(
             width: MediaQuery.of(context).size.width * 0.25,
-            color: e.method == auth?.method ? appColors.selectedColor() : Colors.transparent,
+            color: e.method == auth?.method
+                ? appColors.selectedColor()
+                : Colors.transparent,
             padding: const EdgeInsets.all(8),
             child: Text(e.label),
           ),

@@ -14,5 +14,9 @@ class SupportedPackage extends Equatable {
   });
 
   @override
-  List<Object?> get props => [label, package, instance];
+  List<Object?> get props => [
+        label,
+        package,
+        instance,
+      ];
 }

@@ -8,11 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:client_ao/src/shared/utils/client_ao_extensions.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final selectedSupportedLanguageProvider = StateProvider<SupportedLanguage?>((ref) {
+final selectedSupportedLanguageProvider =
+    StateProvider<SupportedLanguage?>((ref) {
   return null;
 });
 
-final selectedSupportedPackageProvider = StateProvider<SupportedPackage?>((ref) {
+final selectedSupportedPackageProvider =
+    StateProvider<SupportedPackage?>((ref) {
   return null;
 });
 
@@ -24,7 +26,8 @@ class CodeGenPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final collection = ref.watch(collectionsNotifierProvider.notifier).getCollection();
+    final collection =
+        ref.watch(collectionsNotifierProvider.notifier).getCollection();
     final requestModel = collection?.requests?.get(activeId?.requestId);
     final language = ref.watch(selectedSupportedLanguageProvider);
     final code = ref.watch(codegenServiceProvider(requestModel));
@@ -37,7 +40,7 @@ class CodeGenPage extends HookConsumerWidget {
         children: [
           CodeGeneratorHeader(code),
           const SizedBox(height: 8),
-          Divider(color: Theme.of(context).colorScheme.surfaceVariant),
+          Divider(color: Theme.of(context).colorScheme.surfaceContainerHighest),
           const SizedBox(height: 16),
           CodeHighlightView(
             code: code ?? '',

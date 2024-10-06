@@ -4,7 +4,8 @@ import 'package:client_ao/src/shared/models/base_request.interface.dart';
 import 'package:client_ao/src/shared/models/request.model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final codegenServiceProvider = StateProvider.family<String?, BaseRequestModel?>((ref, request) {
+final codegenServiceProvider =
+    StateProvider.family<String?, BaseRequestModel?>((ref, request) {
   return CodegenService(ref, request).getCode();
 });
 

@@ -18,7 +18,8 @@ class RequestSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final collectionsLength = ref.watch(collectionsNotifierProvider.select((value) => value.length));
+    final collectionsLength =
+        ref.watch(collectionsNotifierProvider.select((value) => value.length));
 
     if (collectionsLength == 0) {
       return const EmptyCollectionsPage();
@@ -36,7 +37,7 @@ class RequestSection extends HookConsumerWidget {
               children: [
                 const Expanded(child: RequestEditor()),
                 VerticalDivider(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 ),
                 const Expanded(
                   child: ResponseSection(),

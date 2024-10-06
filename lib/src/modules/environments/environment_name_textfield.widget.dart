@@ -37,7 +37,9 @@ class EnvironmentNameTextField extends HookConsumerWidget {
         readOnly: !enableTextField.value,
         decoration: InputDecoration(
           filled: index == currentIndex,
-          fillColor: index == currentIndex ? appColors.selectedColor() : Colors.transparent,
+          fillColor: index == currentIndex
+              ? appColors.selectedColor()
+              : Colors.transparent,
         ),
         onChanged: (value) {
           if (value.isNotEmpty) {

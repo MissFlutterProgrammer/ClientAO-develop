@@ -65,7 +65,8 @@ class ResponseSection extends HookConsumerWidget {
     );
   }
 
-  bool shouldDisplayResponseError(ActiveId? activeId, ClientAoException? exception) {
+  bool shouldDisplayResponseError(
+      ActiveId? activeId, ClientAoException? exception) {
     return exception != null &&
         exception.message.isNotEmpty &&
         exception.requestId == activeId?.requestId &&

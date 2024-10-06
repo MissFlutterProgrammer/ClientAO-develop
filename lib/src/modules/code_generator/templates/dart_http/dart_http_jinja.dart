@@ -1,5 +1,5 @@
-
-String defaultHttpImportAndUriTemplate = """import 'package:http/http.dart' as http;
+String defaultHttpImportAndUriTemplate =
+    """import 'package:http/http.dart' as http;
 
 Future<void> main() async {
 

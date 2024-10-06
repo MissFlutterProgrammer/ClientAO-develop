@@ -21,12 +21,14 @@ class ApiRequest implements IApiRequestRepository {
   @override
   Future<(http.Response, Duration)> request(BaseRequestModel request) async {
     final headers = Map.fromEntries(
-      request.headers!.map((e) => MapEntry<String, String>(e.key ?? '', e.value ?? '')),
+      request.headers!
+          .map((e) => MapEntry<String, String>(e.key ?? '', e.value ?? '')),
     );
 
     Uri? uri = getUriWithQueryParams(request);
 
-    if (uri == null || uri.host.isEmpty) throw ClientAoException(message: 'No host specified in URI');
+    if (uri == null || uri.host.isEmpty)
+      throw ClientAoException(message: 'No host specified in URI');
 
     final body = request.body;
 

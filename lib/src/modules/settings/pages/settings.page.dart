@@ -51,7 +51,7 @@ class SettingsPage extends HookConsumerWidget {
               ),
             ),
             VerticalDivider(
-              color: Theme.of(context).colorScheme.surfaceVariant,
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
             ),
             Expanded(
               child: widget.value ?? const SizedBox.shrink(),

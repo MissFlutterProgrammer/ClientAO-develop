@@ -18,19 +18,23 @@ class WebSocketSendRequestButton extends ConsumerWidget {
     final channel = ref.watch(webSocketProvider);
 
     return Container(
-      color: channel != null ? Colors.red : Theme.of(context).colorScheme.primary,
+      color:
+          channel != null ? Colors.red : Theme.of(context).colorScheme.primary,
       child: Row(
         children: [
           FilledButton(
             onPressed: onPressed,
             style: ButtonStyle(
-                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+              padding: WidgetStateProperty.all(
+                const EdgeInsets.symmetric(
                   horizontal: 20,
                   vertical: 24,
-                )),
-                backgroundColor: MaterialStateProperty.all<Color?>(
-                  channel != null ? Colors.red : null,
-                )),
+                ),
+              ),
+              backgroundColor: WidgetStateProperty.all<Color?>(
+                channel != null ? Colors.red : null,
+              ),
+            ),
             child: Text(
               channel == null ? 'Connect' : 'Disconnect',
               style: TextStyle(

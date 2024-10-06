@@ -14,7 +14,8 @@ class AuthBasic extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final basicAuthState = ref.watch(authBasicProvider);
-    final userController = useTextEditingController(text: basicAuthState.username);
+    final userController =
+        useTextEditingController(text: basicAuthState.username);
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -24,7 +25,9 @@ class AuthBasic extends HookConsumerWidget {
             children: [
               const Text(
                 'ENABLED',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(width: 16),
               Checkbox(
@@ -48,7 +51,8 @@ class AuthBasic extends HookConsumerWidget {
                 child: TextField(
                   controller: userController,
                   onChanged: (value) {
-                    ref.read(authBasicProvider.notifier).state = basicAuthState.copyWith(
+                    ref.read(authBasicProvider.notifier).state =
+                        basicAuthState.copyWith(
                       username: value,
                     );
                   },
@@ -65,7 +69,8 @@ class AuthBasic extends HookConsumerWidget {
               Expanded(
                 child: TextFieldWithEnvironmentSuggestion(
                   onChanged: (value) {
-                    ref.read(authBasicProvider.notifier).state = basicAuthState.copyWith(
+                    ref.read(authBasicProvider.notifier).state =
+                        basicAuthState.copyWith(
                       password: value,
                     );
                   },

@@ -17,7 +17,9 @@ class ResponsePreview extends ConsumerWidget {
     final theme = ref.watch(themesProvider);
     final url = response?.requestUri;
     final contentType = response?.headers?[HttpHeaders.contentTypeHeader];
-    final mediaType = contentType?.isNotEmpty == true ? MediaType.parse(contentType ?? '') : MediaType('text', 'json');
+    final mediaType = contentType?.isNotEmpty == true
+        ? MediaType.parse(contentType ?? '')
+        : MediaType('text', 'json');
 
     return SingleChildScrollView(
       child: getWidgetByContentType(

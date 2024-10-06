@@ -27,7 +27,8 @@ class ResponseHeaders extends ConsumerWidget {
                 final header = headers.entries.elementAt(index);
 
                 return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   margin: const EdgeInsets.only(bottom: 16),
                   color: appColors.selectedColor(),
                   child: Row(

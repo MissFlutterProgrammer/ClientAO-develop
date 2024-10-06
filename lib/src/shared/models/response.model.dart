@@ -75,7 +75,9 @@ class ResponseModel extends Equatable implements BaseResponseModel {
       response.headers,
     );
 
-    final body = (mediaType?.subtype == 'json') ? utf8.decode(response.bodyBytes) : response.body;
+    final body = (mediaType?.subtype == 'json')
+        ? utf8.decode(response.bodyBytes)
+        : response.body;
 
     int? responseSize = response.contentLength;
 

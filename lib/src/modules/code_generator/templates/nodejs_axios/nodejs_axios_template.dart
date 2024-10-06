@@ -62,7 +62,8 @@ class NodejsWithAxiosTemplate implements ICodeGenTemplate {
         headersString = jsonEncoder.convert(headers);
         headersString = addPaddingToMultilineString(headersString, 4);
         final templateHeaders = Template(defaultNodejsAxiosHeadersTemplate);
-        output = (output ?? '') + templateHeaders.render({"headers": headersString});
+        output =
+            (output ?? '') + templateHeaders.render({"headers": headersString});
       }
     } else {
       output = (output ?? '') + defaultNodejsAxiosEmptyHeadersTemplate;

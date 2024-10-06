@@ -4,7 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final themesProvider = StateNotifierProvider<ThemesProvider, ThemeMode?>((ref) {
-  final isDarkMode = ref.watch(settingsProvider.select((value) => value?.darkMode));
+  final isDarkMode =
+      ref.watch(settingsProvider.select((value) => value?.darkMode));
   return ThemesProvider(isDarkMode ?? false);
 });
 

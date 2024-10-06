@@ -18,13 +18,16 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Listen for Collection model changes and update cache
-    ref.listen<List<CollectionModel>>(collectionsNotifierProvider, (previous, next) async {
+    ref.listen<List<CollectionModel>>(collectionsNotifierProvider,
+        (previous, next) async {
       final index = ref.read(collectionsNotifierProvider.notifier).indexOfId();
       final collections = ref.read(collectionsNotifierProvider);
       final collection = collections.get(index);
 
       await ref.read(collectionHiveServiceProvider).saveCollection(collection);
-      await ref.read(collectionHiveServiceProvider).removeUnusedIds(collections);
+      await ref
+          .read(collectionHiveServiceProvider)
+          .removeUnusedIds(collections);
     });
 
     return Scaffold(
@@ -35,19 +38,19 @@ class HomePage extends HookConsumerWidget {
               data: MultiSplitViewThemeData(
                 dividerThickness: 1,
                 dividerPainter: DividerPainters.background(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   highlightedColor: Theme.of(context).colorScheme.outline,
                   animationEnabled: false,
                 ),
               ),
               child: MultiSplitView(
                 initialAreas: [
-                  Area(size: MediaQuery.of(context).size.width * 0.25),
+                  Area(
+                    size: MediaQuery.of(context).size.width * 0.25,
+                  ),
                 ],
-                children: const [
-                  CollectionsSection(),
-                  RequestSectionByRequestType(),
-                ],
+                builder: (context, indices) => CollectionsSection(),
+                // (context, indices) => RequestSectionByRequestType(),
               ),
             ),
           ),
@@ -70,7 +73,9 @@ class HomeFooter extends ConsumerWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => const SettingsPage()),
+            MaterialPageRoute(
+              builder: (_) => const SettingsPage(),
+            ),
           );
         },
         icon: const Icon(Icons.settings, size: 16),
@@ -86,7 +91,11 @@ class RequestSectionByRequestType extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final request = ref.watch(collectionsNotifierProvider.notifier).getCollection()?.requests?.get(activeId?.requestId);
+    final request = ref
+        .watch(collectionsNotifierProvider.notifier)
+        .getCollection()
+        ?.requests
+        ?.get(activeId?.requestId);
 
     if (request is RequestModel) {
       return const RequestSection();

@@ -48,7 +48,9 @@ class EnvironmentManager extends HookConsumerWidget {
                     onPressed: () {
                       final index = ref.read(envIndexProvider);
                       final key = ref.watch(envNameProvider);
-                      ref.read(environmentHiveServiceProvider).removeEnvironment(key, index);
+                      ref
+                          .read(environmentHiveServiceProvider)
+                          .removeEnvironment(key, index);
                     },
                     icon: const Icon(Icons.delete_forever_rounded),
                     label: const Text('Delete'),
@@ -83,7 +85,9 @@ class _EnvironmentNamesSection extends ConsumerWidget {
             selectedValue: envName,
             onTap: () {
               ref.read(envIndexProvider.notifier).update((state) => index);
-              ref.read(envNameProvider.notifier).update((state) => environments[index]);
+              ref
+                  .read(envNameProvider.notifier)
+                  .update((state) => environments[index]);
             },
           );
         },

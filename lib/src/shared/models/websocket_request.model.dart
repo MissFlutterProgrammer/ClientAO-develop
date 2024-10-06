@@ -67,5 +67,13 @@ class WebSocketRequest extends Equatable implements BaseRequestModel {
   }
 
   @override
-  List<Object?> get props => [url, body, name, folderId, method, headers, urlParams];
+  List<Object?> get props => [
+        url,
+        body,
+        name,
+        folderId,
+        method,
+        headers,
+        urlParams,
+      ];
 }

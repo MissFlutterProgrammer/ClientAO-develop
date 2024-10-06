@@ -22,7 +22,9 @@ class RequestAndResponseSettingsSection extends ConsumerWidget {
             onChanged: (value) {
               final timeout = int.tryParse(value);
               if (value.isNotEmpty && timeout != null) {
-                ref.read(settingsProvider.notifier).update(requestTimeout: timeout);
+                ref
+                    .read(settingsProvider.notifier)
+                    .update(requestTimeout: timeout);
               }
             },
           ),

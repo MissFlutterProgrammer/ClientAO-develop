@@ -32,10 +32,12 @@ class DropdownButtonSupportedLanguages extends HookConsumerWidget {
         if (value != null) {
           supportedLanguage.value = value;
           ref.read(selectedSupportedLanguageProvider.notifier).state = value;
-          ref.read(selectedSupportedPackageProvider.notifier).state = value.packages.first;
+          ref.read(selectedSupportedPackageProvider.notifier).state =
+              value.packages.first;
         }
       },
-      items: languages.map<DropdownMenuItem<SupportedLanguage>>((SupportedLanguage value) {
+      items: languages
+          .map<DropdownMenuItem<SupportedLanguage>>((SupportedLanguage value) {
         return DropdownMenuItem<SupportedLanguage>(
           value: value,
           child: Padding(

@@ -14,7 +14,8 @@ class WebSocketUrlCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final collection = ref.watch(collectionsNotifierProvider.notifier).getCollection();
+    final collection =
+        ref.watch(collectionsNotifierProvider.notifier).getCollection();
     final url = collection?.requests?.get(activeId?.requestId)?.url;
     final urlController = useTextEditingController(text: url);
     final focusNode = useFocusNode();
@@ -47,10 +48,12 @@ class WebSocketUrlCard extends HookConsumerWidget {
       height: 50,
       child: Container(
         decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(
-          color: Theme.of(context).dividerColor.withOpacity(0.5),
-        ))),
+          border: Border(
+            bottom: BorderSide(
+              color: Theme.of(context).dividerColor.withOpacity(0.5),
+            ),
+          ),
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -58,7 +61,9 @@ class WebSocketUrlCard extends HookConsumerWidget {
               padding: const EdgeInsets.only(left: 8, top: 8),
               child: Text(
                 'WS',
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.amber),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: Colors.amber,
+                    ),
               ),
             ),
             const SizedBox(width: 8),
@@ -73,7 +78,9 @@ class WebSocketUrlCard extends HookConsumerWidget {
                   contentPadding: EdgeInsets.symmetric(horizontal: 8),
                 ),
                 onChanged: (value) {
-                  ref.read(collectionsNotifierProvider.notifier).updateRequest(url: value);
+                  ref
+                      .read(collectionsNotifierProvider.notifier)
+                      .updateRequest(url: value);
                 },
                 onSubmitted: (value) => sendRequest.call(),
               ),

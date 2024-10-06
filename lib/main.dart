@@ -12,5 +12,9 @@ void main() async {
   registerAdapters();
   await openHiveBoxes();
 
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }

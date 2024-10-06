@@ -43,9 +43,11 @@ class DartWithHttpTemplate implements ICodeGenTemplate {
         }
 
         headersString = jsonEncoder.convert(headers);
-        headersString = addPaddingToMultilineString(headersString, defaultHeadersPadding);
+        headersString =
+            addPaddingToMultilineString(headersString, defaultHeadersPadding);
         final templateHeaders = Template(defaultTemplateHeaders);
-        output = (output ?? '') + templateHeaders.render({"headers": headersString});
+        output =
+            (output ?? '') + templateHeaders.render({"headers": headersString});
       }
     }
 
@@ -60,7 +62,8 @@ class DartWithHttpTemplate implements ICodeGenTemplate {
     final params = listToMap(request?.urlParams);
     if (params != null && params.isNotEmpty && params.keys.first.isNotEmpty) {
       var paramsString = jsonEncoder.convert(params);
-      paramsString = addPaddingToMultilineString(paramsString, defaultParamsPadding);
+      paramsString =
+          addPaddingToMultilineString(paramsString, defaultParamsPadding);
 
       output = (output ?? '') + templateParams.render({"params": paramsString});
       Uri uri = Uri.parse(url!);
@@ -91,7 +94,8 @@ class DartWithHttpTemplate implements ICodeGenTemplate {
   @override
   void requestEnd({bool? hasHeader, bool? hasBody}) {
     var templateRequest = Template(defaultTemplateRequest);
-    output = (output ?? '') + templateRequest.render({"method": request?.method.name});
+    output = (output ?? '') +
+        templateRequest.render({"method": request?.method.name});
 
     if (hasHeader == true) {
       output = (output ?? '') + defaultStringRequestHeaders;

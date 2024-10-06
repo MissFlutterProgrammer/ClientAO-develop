@@ -5,8 +5,11 @@ final environmentsProvider = Provider.autoDispose<List<String>>((ref) {
   return ref.read(environmentHiveServiceProvider).getAllEnvironments();
 });
 
-final getEnvironmentValuesByKeyProvider = Provider.family.autoDispose<Map<dynamic, dynamic>?, String>((ref, key) {
-  return ref.read(environmentHiveServiceProvider).getEnvironmentValuesByKey(key);
+final getEnvironmentValuesByKeyProvider =
+    Provider.family.autoDispose<Map<dynamic, dynamic>?, String>((ref, key) {
+  return ref
+      .read(environmentHiveServiceProvider)
+      .getEnvironmentValuesByKey(key);
 });
 
 final selectedEnvironmentProvider = StateProvider<String?>((ref) {

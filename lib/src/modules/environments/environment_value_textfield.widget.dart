@@ -16,7 +16,10 @@ class EnvironmentValueTextField extends HookConsumerWidget {
     final envName = ref.watch(envNameProvider);
     final value = ref.watch(getEnvironmentValuesByKeyProvider(envName)) ?? {};
     final codeController = TextEditingController(
-      text: formatBody(json.encode(value), MediaType('text', 'json')),
+      text: formatBody(
+        json.encode(value),
+        MediaType('text', 'json'),
+      ),
     );
 
     return TextField(

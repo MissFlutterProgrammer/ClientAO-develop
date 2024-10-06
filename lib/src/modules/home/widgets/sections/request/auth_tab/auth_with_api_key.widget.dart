@@ -15,7 +15,9 @@ class AuthWithApiKey extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final apiKeyState = ref.watch(authWithApiKeyProvider);
-    final apiKeyController = useTextEditingController(text: apiKeyState.keyValue?.key);
+    final apiKeyController = useTextEditingController(
+      text: apiKeyState.keyValue?.key,
+    );
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -25,13 +27,16 @@ class AuthWithApiKey extends HookConsumerWidget {
             children: [
               const Text(
                 'ENABLED',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(width: 16),
               Checkbox(
                 value: apiKeyState.enabled,
                 onChanged: (value) {
-                  ref.read(authWithApiKeyProvider.notifier).state = apiKeyState.copyWith(
+                  ref.read(authWithApiKeyProvider.notifier).state =
+                      apiKeyState.copyWith(
                     enabled: !apiKeyState.enabled,
                   );
                 },
@@ -47,7 +52,8 @@ class AuthWithApiKey extends HookConsumerWidget {
                 child: TextField(
                   controller: apiKeyController,
                   onChanged: (value) {
-                    ref.read(authWithApiKeyProvider.notifier).state = apiKeyState.copyWith(
+                    ref.read(authWithApiKeyProvider.notifier).state =
+                        apiKeyState.copyWith(
                       keyValue: apiKeyState.keyValue?.copyWith(key: value),
                     );
                   },
@@ -64,7 +70,8 @@ class AuthWithApiKey extends HookConsumerWidget {
               Expanded(
                 child: TextFieldWithEnvironmentSuggestion(
                   onChanged: (value) {
-                    ref.read(authWithApiKeyProvider.notifier).state = apiKeyState.copyWith(
+                    ref.read(authWithApiKeyProvider.notifier).state =
+                        apiKeyState.copyWith(
                       keyValue: apiKeyState.keyValue?.copyWith(value: value),
                     );
                   },

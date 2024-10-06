@@ -18,7 +18,8 @@ final isTypingProvider = StateProvider<bool>((ref) {
   return false;
 });
 
-final selectedSuggestionTextProvider = StateProvider.family<String?, int>((ref, key) {
+final selectedSuggestionTextProvider =
+    StateProvider.family<String?, int>((ref, key) {
   return null;
 });
 
@@ -56,7 +57,8 @@ class TextFieldWithEnvironmentSuggestion extends HookConsumerWidget {
     final textFieldController = useTextEditingController(text: defaultValue);
     final focusNode = useFocusNode();
 
-    ref.listen(selectedSuggestionTextProvider(textFieldController.hashCode), (previous, next) {
+    ref.listen(selectedSuggestionTextProvider(textFieldController.hashCode),
+        (previous, next) {
       if (next != null) {
         onChanged?.call(next);
       }
@@ -124,7 +126,8 @@ class TextFieldWithEnvironmentSuggestion extends HookConsumerWidget {
     );
   }
 
-  void showEnvironmentVariablesSuggestions(BuildContext context, WidgetRef ref) {
+  void showEnvironmentVariablesSuggestions(
+      BuildContext context, WidgetRef ref) {
     final overlayEntry = ref.read(overlayEntryProvider);
 
     if (overlayEntry == null) return;

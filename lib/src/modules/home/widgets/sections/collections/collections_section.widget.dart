@@ -22,12 +22,15 @@ class CollectionsSection extends HookConsumerWidget {
               height: 34,
               child: TextButton.icon(
                 onPressed: () {
-                  final newId = ref.read(collectionsNotifierProvider.notifier).newCollection();
-                  ref.read(activeIdProvider.notifier).update((state) => state?.copyWith(collection: newId, requestId: 0));
+                  final newId = ref
+                      .read(collectionsNotifierProvider.notifier)
+                      .newCollection();
+                  ref.read(activeIdProvider.notifier).update((state) =>
+                      state?.copyWith(collection: newId, requestId: 0));
                 },
                 style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(4),
-                  shape: MaterialStateProperty.all(
+                  elevation: WidgetStateProperty.all(4),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                       side: BorderSide(

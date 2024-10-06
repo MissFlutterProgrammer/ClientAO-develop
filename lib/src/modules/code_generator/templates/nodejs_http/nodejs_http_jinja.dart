@@ -1,4 +1,5 @@
-String defaultNodejsHttpImportAndOptionsTemplate = """const http = require("https");
+String defaultNodejsHttpImportAndOptionsTemplate =
+    """const http = require("https");
 
 const options = {
   method: '{{method}}',

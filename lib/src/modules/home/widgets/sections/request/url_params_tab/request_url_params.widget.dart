@@ -30,7 +30,12 @@ class _UrlParamsRowsList extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
     final index = ref.watch(collectionsNotifierProvider.notifier).indexOfId();
-    final rows = ref.watch(collectionsNotifierProvider).get(index)?.requests?.get(activeId?.requestId)?.urlParams;
+    final rows = ref
+        .watch(collectionsNotifierProvider)
+        .get(index)
+        ?.requests
+        ?.get(activeId?.requestId)
+        ?.urlParams;
 
     List<_HeadersButtons>? buttons;
 
@@ -41,13 +46,17 @@ class _UrlParamsRowsList extends HookConsumerWidget {
             label: 'Add',
             onTap: () {
               rows?.add(const KeyValueRow());
-              ref.read(collectionsNotifierProvider.notifier).updateRequest(urlParams: rows);
+              ref
+                  .read(collectionsNotifierProvider.notifier)
+                  .updateRequest(urlParams: rows);
             },
           ),
           _HeadersButtons(
             label: 'Remove All',
             onTap: () {
-              ref.read(collectionsNotifierProvider.notifier).removeAllUrlParams();
+              ref
+                  .read(collectionsNotifierProvider.notifier)
+                  .removeAllUrlParams();
             },
           ),
         ];
@@ -61,7 +70,9 @@ class _UrlParamsRowsList extends HookConsumerWidget {
       context: context,
       valueColumnName: 'Values',
       onFieldsChange: (newRows) {
-        ref.read(collectionsNotifierProvider.notifier).updateRequest(urlParams: newRows);
+        ref
+            .read(collectionsNotifierProvider.notifier)
+            .updateRequest(urlParams: newRows);
       },
       onRemoveTaped: (index) {
         ref.read(collectionsNotifierProvider.notifier).removeUrlParam(index);
@@ -79,7 +90,7 @@ class _UrlParamsRowsList extends HookConsumerWidget {
               return TextButton(
                 onPressed: buttons?[index].onTap,
                 style: ButtonStyle(
-                  padding: MaterialStateProperty.all(const EdgeInsets.all(16)),
+                  padding: WidgetStateProperty.all(const EdgeInsets.all(16)),
                 ),
                 child: Text('${buttons?[index].label}'),
               );

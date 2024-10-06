@@ -19,7 +19,9 @@ class ResponseStatus extends HookConsumerWidget {
             if (data?.isEmpty == true) return const SizedBox.shrink();
 
             final response = (data?.first as ResponseModel?);
-            if (response == null || response.statusCode == null) return const SizedBox.shrink();
+            if (response == null || response.statusCode == null) {
+              return const SizedBox.shrink();
+            }
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -27,22 +29,34 @@ class ResponseStatus extends HookConsumerWidget {
                 children: [
                   Text(
                     response.statusCode.toString(),
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold, color: Colors.green),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
                   ),
                   const SizedBox(width: 8),
                   Text(
                     '${defaultResponseCodeReasons[response.statusCode]}',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold, color: Colors.green),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
                   ),
                   const SizedBox(width: 8),
                   Text(
                     '${response.requestDuration}',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold, color: Colors.green),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
                   ),
                   const SizedBox(width: 8),
                   Text(
                     '${response.responseSize}',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold, color: Colors.green),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
                   ),
                 ],
               ),

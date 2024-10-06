@@ -23,10 +23,13 @@ class DropdownButtonSupportedPackages extends HookConsumerWidget {
       ),
       onChanged: (SupportedPackage? value) {
         if (value != null) {
-          ref.read(selectedSupportedPackageProvider.notifier).update((state) => value);
+          ref
+              .read(selectedSupportedPackageProvider.notifier)
+              .update((state) => value);
         }
       },
-      items: language?.packages.map<DropdownMenuItem<SupportedPackage>>((SupportedPackage value) {
+      items: language?.packages
+          .map<DropdownMenuItem<SupportedPackage>>((SupportedPackage value) {
         return DropdownMenuItem<SupportedPackage>(
           value: value,
           child: Padding(

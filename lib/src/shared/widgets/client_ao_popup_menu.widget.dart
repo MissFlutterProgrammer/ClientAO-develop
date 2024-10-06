@@ -51,7 +51,10 @@ class ClientAoPopupMenu extends HookConsumerWidget {
                     children: [
                       Text(e.dividerLabel ?? ''),
                       Expanded(
-                        child: Divider(color: Theme.of(context).colorScheme.surfaceVariant),
+                        child: Divider(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceContainerHighest),
                       ),
                     ],
                   ),

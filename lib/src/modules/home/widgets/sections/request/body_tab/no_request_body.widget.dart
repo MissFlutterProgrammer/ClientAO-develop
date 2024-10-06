@@ -19,7 +19,9 @@ class NoRequestBody extends ConsumerWidget {
           const Text(enterUrlAndSend),
           const SizedBox(height: 16),
           Divider(
-            color: themMode == ThemeMode.dark ? Colors.white70 : Theme.of(context).colorScheme.surfaceVariant,
+            color: themMode == ThemeMode.dark
+                ? Colors.white70
+                : Theme.of(context).colorScheme.surfaceContainerHighest,
           ),
           const SizedBox(height: 16),
           const Text(selectBodyTypeAbove, textAlign: TextAlign.center),

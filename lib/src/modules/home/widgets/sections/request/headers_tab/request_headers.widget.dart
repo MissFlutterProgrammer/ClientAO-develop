@@ -13,7 +13,10 @@ class RequestHeaders extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
     final index = ref.watch(collectionsNotifierProvider.notifier).indexOfId();
-    final rows = ref.watch(collectionsNotifierProvider)[index].requests?[activeId?.requestId ?? 0]?.headers;
+    final rows = ref
+        .watch(collectionsNotifierProvider)[index]
+        .requests?[activeId?.requestId ?? 0]
+        ?.headers;
     List<_HeadersButtons>? buttons;
 
     useEffect(
@@ -23,7 +26,9 @@ class RequestHeaders extends HookConsumerWidget {
             label: 'Add',
             onTap: () {
               rows?.add(const KeyValueRow());
-              ref.read(collectionsNotifierProvider.notifier).updateRequest(headers: rows);
+              ref
+                  .read(collectionsNotifierProvider.notifier)
+                  .updateRequest(headers: rows);
             },
           ),
           _HeadersButtons(
@@ -46,7 +51,9 @@ class RequestHeaders extends HookConsumerWidget {
         ref.read(collectionsNotifierProvider.notifier).removeHeader(index);
       },
       onFieldsChange: (newRows) {
-        ref.read(collectionsNotifierProvider.notifier).updateRequest(headers: newRows);
+        ref
+            .read(collectionsNotifierProvider.notifier)
+            .updateRequest(headers: newRows);
       },
     );
 
@@ -61,7 +68,9 @@ class RequestHeaders extends HookConsumerWidget {
               return TextButton(
                 onPressed: buttons?[index].onTap,
                 style: ButtonStyle(
-                  padding: MaterialStateProperty.all(const EdgeInsets.all(16)),
+                  padding: WidgetStateProperty.all(
+                    const EdgeInsets.all(16),
+                  ),
                 ),
                 child: Text('${buttons?[index].label}'),
               );
@@ -72,7 +81,9 @@ class RequestHeaders extends HookConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Davi<KeyValueRow>(
-              key: Key('${activeId?.requestId}-${rows?.length}'),
+              key: Key(
+                '${activeId?.requestId}-${rows?.length}',
+              ),
               daviModel,
             ),
           ),
@@ -86,5 +97,8 @@ class _HeadersButtons {
   final String label;
   final VoidCallback? onTap;
 
-  _HeadersButtons({required this.label, this.onTap});
+  _HeadersButtons({
+    required this.label,
+    this.onTap,
+  });
 }

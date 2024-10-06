@@ -16,9 +16,17 @@ class WebSocketRequestBody extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final defaultValue = ref.watch(collectionsNotifierProvider.notifier).getCollection()?.requests?.get(activeId?.requestId ?? 0)?.body;
+    final defaultValue = ref
+        .watch(collectionsNotifierProvider.notifier)
+        .getCollection()
+        ?.requests
+        ?.get(activeId?.requestId ?? 0)
+        ?.body;
     final bodyController = useTextEditingController(
-      text: formatBody(defaultValue, MediaType('text', 'json')),
+      text: formatBody(
+        defaultValue,
+        MediaType('text', 'json'),
+      ),
     );
 
     return Column(
@@ -29,7 +37,10 @@ class WebSocketRequestBody extends HookConsumerWidget {
           child: Container(
             margin: const EdgeInsets.only(top: 16, right: 8),
             child: FilledButton(
-              onPressed: () => sendData(ref, bodyController.text.trim()),
+              onPressed: () => sendData(
+                ref,
+                bodyController.text.trim(),
+              ),
               child: const Text('Send'),
             ),
           ),

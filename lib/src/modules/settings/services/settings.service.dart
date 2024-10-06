@@ -2,7 +2,8 @@ import 'package:client_ao/src/modules/settings/models/setting.model.dart';
 import 'package:client_ao/src/shared/constants/hive_box.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final settingsProvider = StateNotifierProvider<SettingsService, Setting?>((ref) {
+final settingsProvider =
+    StateNotifierProvider<SettingsService, Setting?>((ref) {
   return SettingsService();
 });
 
@@ -30,7 +31,6 @@ class SettingsService extends StateNotifier<Setting?> {
       httpScheme: httpScheme,
       darkMode: darkMode,
     );
-
     save();
   }
 }

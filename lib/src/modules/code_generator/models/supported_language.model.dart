@@ -14,5 +14,9 @@ class SupportedLanguage extends Equatable {
   });
 
   @override
-  List<Object?> get props => [language, highlightLanguage, packages];
+  List<Object?> get props => [
+        language,
+        highlightLanguage,
+        packages,
+      ];
 }

@@ -22,16 +22,23 @@ class EnvironmentSection extends HookConsumerWidget {
 
     useEffect(
       () {
-        itemsFromEnv.add(const PopupMenuModel(
-          label: 'No environment',
-          dividerAfterItem: true,
-          dividerLabel: 'General',
-        ));
-        itemsFromEnv.add(PopupMenuModel(
-          label: 'Manage environments',
-          icon: Icons.precision_manufacturing_outlined,
-          callback: () => displayDialog(context, const EnvironmentManager()),
-        ));
+        itemsFromEnv.add(
+          const PopupMenuModel(
+            label: 'No environment',
+            dividerAfterItem: true,
+            dividerLabel: 'General',
+          ),
+        );
+        itemsFromEnv.add(
+          PopupMenuModel(
+            label: 'Manage environments',
+            icon: Icons.precision_manufacturing_outlined,
+            callback: () => displayDialog(
+              context,
+              const EnvironmentManager(),
+            ),
+          ),
+        );
         return;
       },
     );
@@ -45,9 +52,13 @@ class EnvironmentSection extends HookConsumerWidget {
           callback: (item) {
             if (item.callback != null) return item.callback?.call();
 
-            ref.read(environmentHiveServiceProvider).saveSelectedEnvironment(item.label);
+            ref
+                .read(environmentHiveServiceProvider)
+                .saveSelectedEnvironment(item.label);
             ref.read(envNameProvider.notifier).update((state) => item.label);
-            ref.invalidate(environmentByInsertedTextProvider);
+            ref.invalidate(
+              environmentByInsertedTextProvider,
+            );
           },
         ),
       ],

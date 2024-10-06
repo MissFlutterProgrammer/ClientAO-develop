@@ -9,21 +9,52 @@ const uuid = Uuid();
 const bodyMenuOptions = [
   PopupMenuModel(label: 'JSON', method: BodyType.json),
   PopupMenuModel(label: 'XML', method: BodyType.xml),
-  PopupMenuModel(label: 'Multipart Form', method: BodyType.multipartForm),
+  PopupMenuModel(
+    label: 'Multipart Form',
+    method: BodyType.multipartForm,
+  ),
   PopupMenuModel(label: 'Body', method: BodyType.none),
 ];
 
 const authMethodsOptions = [
-  PopupMenuModel(label: 'API Key Auth', displayName: 'API Key', method: AuthMethod.apiKeyAuth),
-  PopupMenuModel(label: 'Bearer Token', displayName: 'Bearer', method: AuthMethod.bearerToken),
-  PopupMenuModel(label: 'Basic Auth', displayName: 'Basic', method: AuthMethod.basic),
-  PopupMenuModel(label: 'No Authentication', displayName: 'Auth', method: AuthMethod.noAuthentication),
+  PopupMenuModel(
+    label: 'API Key Auth',
+    displayName: 'API Key',
+    method: AuthMethod.apiKeyAuth,
+  ),
+  PopupMenuModel(
+    label: 'Bearer Token',
+    displayName: 'Bearer',
+    method: AuthMethod.bearerToken,
+  ),
+  PopupMenuModel(
+    label: 'Basic Auth',
+    displayName: 'Basic',
+    method: AuthMethod.basic,
+  ),
+  PopupMenuModel(
+    label: 'No Authentication',
+    displayName: 'Auth',
+    method: AuthMethod.noAuthentication,
+  ),
 ];
 
 const collectionMenuOptions = [
-  PopupMenuModel(label: 'Add request', displayName: 'New HTTP Request', method: CollectionPopUpItem.addRequest),
-  PopupMenuModel(label: 'WebSocket Request', displayName: 'WebSocket Request', method: CollectionPopUpItem.webSocketRequest),
-  PopupMenuModel(label: 'Delete', displayName: 'Delete', method: CollectionPopUpItem.delete),
+  PopupMenuModel(
+    label: 'Add request',
+    displayName: 'New HTTP Request',
+    method: CollectionPopUpItem.addRequest,
+  ),
+  PopupMenuModel(
+    label: 'WebSocket Request',
+    displayName: 'WebSocket Request',
+    method: CollectionPopUpItem.webSocketRequest,
+  ),
+  PopupMenuModel(
+    label: 'Delete',
+    displayName: 'Delete',
+    method: CollectionPopUpItem.delete,
+  ),
 ];
 
 const sendMethodsOptions = [

@@ -28,7 +28,8 @@ class AuthWithBearerToken extends HookConsumerWidget {
               Checkbox(
                 value: bearerAuth.enabled,
                 onChanged: (value) {
-                  ref.read(authWithBearerTokenProvider.notifier).state = bearerAuth.copyWith(
+                  ref.read(authWithBearerTokenProvider.notifier).state =
+                      bearerAuth.copyWith(
                     enabled: !bearerAuth.enabled,
                   );
                 },
@@ -43,7 +44,8 @@ class AuthWithBearerToken extends HookConsumerWidget {
               Expanded(
                 child: TextFieldWithEnvironmentSuggestion(
                   onChanged: (value) {
-                    ref.read(authWithBearerTokenProvider.notifier).state = bearerAuth.copyWith(
+                    ref.read(authWithBearerTokenProvider.notifier).state =
+                        bearerAuth.copyWith(
                       token: value,
                     );
                   },

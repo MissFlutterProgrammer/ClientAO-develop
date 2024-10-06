@@ -12,7 +12,12 @@ class AuthTab extends ConsumerWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(child: Text(auth?.displayName ?? '', maxLines: 1)),
+        Expanded(
+          child: Text(
+            auth?.displayName ?? '',
+            maxLines: 1,
+          ),
+        ),
         const SizedBox(width: 5),
         Expanded(
           child: IconButton(
@@ -28,7 +33,9 @@ class AuthTab extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return const AlertDialog(content: AuthenticationOptions());
+        return const AlertDialog(
+          content: AuthenticationOptions(),
+        );
       },
     );
   }

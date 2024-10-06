@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:client_ao/src/modules/home/services/request.service.interface.dart';
 import 'package:client_ao/src/modules/home/states/collections.state.dart';
 import 'package:client_ao/src/shared/models/base_request.interface.dart';
@@ -23,7 +22,8 @@ class HttpRequestService implements IRequestService {
   Future<void> send(RequestParams params) async {
     final activeId = _ref.read(activeIdProvider);
     final index = _ref.read(collectionsNotifierProvider.notifier).indexOfId();
-    final collection = _ref.read(collectionsNotifierProvider.notifier).getCollection();
+    final collection =
+        _ref.read(collectionsNotifierProvider.notifier).getCollection();
 
     if (params.sendAfterDelay != null) {
       await Future.delayed(params.sendAfterDelay ?? Duration.zero);
@@ -52,15 +52,26 @@ class HttpRequestService implements IRequestService {
     var state = _ref.read(collectionsNotifierProvider);
     final requestResponse = collection?.responses;
 
-    updateRequestResponseState(_ref, const AsyncLoading(), activeId?.requestId);
+    updateRequestResponseState(
+      _ref,
+      const AsyncLoading(),
+      activeId?.requestId,
+    );
 
-    final response = await _ref.read(collectionServiceProvider).request(request);
+    final response =
+        await _ref.read(collectionServiceProvider).request(request);
 
     if (response.value == null) return;
 
     requestResponse?[activeId?.requestId ?? 0] = [response.value!];
     state[index] = state[index].copyWith(responses: requestResponse);
-    updateRequestResponseState(_ref, AsyncValue.data([response.value!]), activeId?.requestId);
+    updateRequestResponseState(
+      _ref,
+      AsyncValue.data(
+        [response.value!],
+      ),
+      activeId?.requestId,
+    );
   }
 }
 
@@ -71,11 +82,14 @@ void updateRequestResponseState(
 ) {
   final activeId = ref.read(activeIdProvider);
 
-  if (activeId?.requestId != requestId && !ref.read(cancelRepeatRequestProvider)) {
+  if (activeId?.requestId != requestId &&
+      !ref.read(cancelRepeatRequestProvider)) {
     ref.read(cancelRepeatRequestProvider.notifier).state = true;
     return;
   }
 
   ref.read(responseStateProvider(activeId).notifier).state = newState;
-  ref.read(collectionsNotifierProvider.notifier).updateResponse(newState.value ?? <WebSocketMessage>[]);
+  ref
+      .read(collectionsNotifierProvider.notifier)
+      .updateResponse(newState.value ?? <WebSocketMessage>[]);
 }

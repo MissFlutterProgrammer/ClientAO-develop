@@ -17,7 +17,8 @@ class CodeGeneratorHeader extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final collection = ref.watch(collectionsNotifierProvider.notifier).getCollection();
+    final collection =
+        ref.watch(collectionsNotifierProvider.notifier).getCollection();
     final requestModel = collection?.requests?.get(activeId?.requestId);
 
     useEffect(
@@ -25,8 +26,12 @@ class CodeGeneratorHeader extends HookConsumerWidget {
         SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
           final languages = getSupportedLanguages(requestModel);
 
-          ref.read(selectedSupportedLanguageProvider.notifier).update((state) => languages.first);
-          ref.read(selectedSupportedPackageProvider.notifier).update((state) => languages.first.packages.first);
+          ref
+              .read(selectedSupportedLanguageProvider.notifier)
+              .update((state) => languages.first);
+          ref
+              .read(selectedSupportedPackageProvider.notifier)
+              .update((state) => languages.first.packages.first);
         });
         return;
       },
@@ -60,9 +65,12 @@ class CodeGeneratorHeader extends HookConsumerWidget {
                 copyToClipboard(context: context, text: code);
               },
               style: ButtonStyle(
-                shape: MaterialStateProperty.all(
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
-                    side: BorderSide(color: Theme.of(context).colorScheme.surfaceVariant),
+                    side: BorderSide(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainerHighest),
                   ),
                 ),
               ),

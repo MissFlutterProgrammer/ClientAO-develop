@@ -13,7 +13,8 @@ class CollectionService {
 
   const CollectionService(this._apiRequestService);
 
-  Future<AsyncValue<BaseResponseModel?>> request(BaseRequestModel request) async {
+  Future<AsyncValue<BaseResponseModel?>> request(
+      BaseRequestModel request) async {
     final (response, duration) = await _apiRequestService.request(request);
 
     if (response != null) {

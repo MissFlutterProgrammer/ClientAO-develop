@@ -15,5 +15,10 @@ class RequestParams extends Equatable {
   });
 
   @override
-  List<Object?> get props => [request, requestInterval, sendAfterDelay, repeatRequest];
+  List<Object?> get props => [
+        request,
+        requestInterval,
+        sendAfterDelay,
+        repeatRequest,
+      ];
 }

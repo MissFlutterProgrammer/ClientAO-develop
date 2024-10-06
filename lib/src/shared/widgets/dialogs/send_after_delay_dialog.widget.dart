@@ -12,9 +12,12 @@ class SendAfterDelayDialog extends HookConsumerWidget {
     final textFieldController = useTextEditingController();
 
     void sendRequest() {
-      final delay = Duration(seconds: int.tryParse(textFieldController.text) ?? 0);
+      final delay =
+          Duration(seconds: int.tryParse(textFieldController.text) ?? 0);
 
-      ref.read(collectionsNotifierProvider.notifier).send(sendAfterDelay: delay);
+      ref
+          .read(collectionsNotifierProvider.notifier)
+          .send(sendAfterDelay: delay);
       Navigator.pop(context);
     }
 

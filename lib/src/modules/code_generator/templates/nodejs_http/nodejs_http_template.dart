@@ -65,7 +65,8 @@ class NodejsWithHttpTemplate implements ICodeGenTemplate {
           defaultNodejsHeadersPadding,
         );
         final templateHeaders = Template(defaultNodejsHttpHeadersTemplate);
-        output = (output ?? '') + templateHeaders.render({"headers": headersString});
+        output =
+            (output ?? '') + templateHeaders.render({"headers": headersString});
       }
     } else {
       output = (output ?? '') + defaultNodejsHttpEmptyHeadersTemplate;

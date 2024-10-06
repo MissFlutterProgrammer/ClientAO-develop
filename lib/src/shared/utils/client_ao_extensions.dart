@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:hive/hive.dart';
 
 extension ListExtension<T> on Iterable<T> {

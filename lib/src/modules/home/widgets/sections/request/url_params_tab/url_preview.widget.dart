@@ -12,14 +12,18 @@ class UrlPreview extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeId = ref.watch(activeIdProvider);
-    final collectionIndex = ref.watch(collectionsNotifierProvider.notifier).indexOfId();
-    final collection = ref.watch(collectionsNotifierProvider).get(collectionIndex);
+    final collectionIndex =
+        ref.watch(collectionsNotifierProvider.notifier).indexOfId();
+    final collection =
+        ref.watch(collectionsNotifierProvider).get(collectionIndex);
     final urlToPreview = useState<String?>('');
 
     useEffect(
       () {
-        final urlParamsList = collection?.requests?.get(activeId?.requestId)?.urlParams;
-        final url = Uri.tryParse(collection?.requests?.get(activeId?.requestId)?.url ?? '');
+        final urlParamsList =
+            collection?.requests?.get(activeId?.requestId)?.urlParams;
+        final url = Uri.tryParse(
+            collection?.requests?.get(activeId?.requestId)?.url ?? '');
 
         if (url != null) {
           final queryParams = <String, String>{};
@@ -35,7 +39,8 @@ class UrlPreview extends HookConsumerWidget {
             }
           }
 
-          urlToPreview.value = url.replace(queryParameters: queryParams).toString();
+          urlToPreview.value =
+              url.replace(queryParameters: queryParams).toString();
         }
 
         return;
@@ -46,7 +51,8 @@ class UrlPreview extends HookConsumerWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor.withOpacity(0.5),
-        border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant),
+        border: Border.all(
+            color: Theme.of(context).colorScheme.surfaceContainerHighest),
       ),
       padding: const EdgeInsets.all(16),
       child: Row(

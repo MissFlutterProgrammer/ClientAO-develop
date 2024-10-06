@@ -11,7 +11,8 @@ class AuthBasicModel implements BaseAuth {
 
   @override
   Map<String, String> toKeyValue() {
-    final basicAuth = 'Basic ${base64.encode(utf8.encode('$username:$password'))}';
+    final basicAuth =
+        'Basic ${base64.encode(utf8.encode('$username:$password'))}';
     return {HttpHeaders.authorizationHeader: basicAuth};
   }
 

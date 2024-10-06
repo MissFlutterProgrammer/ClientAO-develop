@@ -112,7 +112,8 @@ void updateRows({
 }
 
 /// Build webSocket response table
-DaviModel<WebSocketMessage> createWebSocketResponseTable(BuildContext context, List<WebSocketMessage>? allMessages) {
+DaviModel<WebSocketMessage> createWebSocketResponseTable(
+    BuildContext context, List<WebSocketMessage>? allMessages) {
   return DaviModel<WebSocketMessage>(
     rows: allMessages ?? <WebSocketMessage>[],
     columns: [
@@ -145,7 +146,8 @@ DaviModel<WebSocketMessage> createWebSocketResponseTable(BuildContext context, L
   );
 }
 
-Widget getIconByStatusAndSentFrom(BuildContext context, WebSocketMessage message) {
+Widget getIconByStatusAndSentFrom(
+    BuildContext context, WebSocketMessage message) {
   if (message.status == SocketConnectionStatus.connected) {
     return const Icon(
       Icons.check_circle_outline_rounded,
@@ -160,8 +162,12 @@ Widget getIconByStatusAndSentFrom(BuildContext context, WebSocketMessage message
     );
   }
   return Icon(
-    message.from == SentFrom.local ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded,
+    message.from == SentFrom.local
+        ? Icons.arrow_upward_rounded
+        : Icons.arrow_downward_rounded,
     size: 16,
-    color: message.from == SentFrom.local ? Theme.of(context).colorScheme.secondary : Colors.green,
+    color: message.from == SentFrom.local
+        ? Theme.of(context).colorScheme.secondary
+        : Colors.green,
   );
 }
